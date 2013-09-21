@@ -1,4 +1,4 @@
 php-crud-mysql
 ==============
 
-A CRUD(Create Read Update Delete) PHP Application using PHP and MySql
+A CRUD(Create Read Update Delete) Application using PHP and MySql

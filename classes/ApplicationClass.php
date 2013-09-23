@@ -1,6 +1,6 @@
 <?php
 	/*Creating a Basic Class for your application which consists some usefull and reusable functions*/
-	
+	session_start();
 	class ApplicationClass{
 		
 		/*Data Members*/
@@ -19,10 +19,9 @@
 		
 		/*This function will replace the original mysql_query() function only for inside the class because its declared as Private*/
 		private function query($sql){
-			if(!$this->query = mysql_query($sql))
-			echo(mysql_error());
-			else
-			return true;
+			$result = mysql_query($sql);
+			if(!$result) echo(mysql_error());
+			else return $result;
 		}
 		
 		/*Reusabele function for inserting data into tables*/
@@ -73,12 +72,31 @@
 		/*Reusabele function for fetch all data into tables*/
 		public function fetchAll($table,$condition=NULL){	
 			$obj = array();
-			$result = this->query("select * from $table $condition");
+			$result = $this->query("select * from $table $condition");
 			//count number of records 
 			while($row=mysql_fetch_assoc($result)){
 				array_push($obj, $row);
 			}
 			return $obj;
+		}
+		
+		/*Use to fill data(integer) in dropdown between given range*/
+		public function fillDropDownValue($min, $max){
+			$data = "";
+			for($i=$min;$i<=$max;$i++) {
+				$data .= '<option value="'.$i.'">'.$i.'</option>';
+			}
+			return $data;
+		}
+		/*Use to fill data(integer) in dropdown between given range*/
+		public function fillSelectedDropDownValue($min, $max, $value){
+			$data = ""; $selected = "";
+			for($i=$min;$i<=$max;$i++) {
+				if($value==$i) $selected = "selected='selected'";
+				else $selected = "";
+				$data .= '<option value="'.$i.'" '.$selected.'>'.$i.'</option>';
+			}
+			return $data;
 		}
 	}
 ?>

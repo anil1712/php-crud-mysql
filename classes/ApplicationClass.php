@@ -7,7 +7,7 @@
 		public $host = 'localhost'; 		// Your database host
 		public $user = 'root';				// Database user which has all the priviledges
 		public $password = 'root';			// Database password
-		public $db = 'users';				// Database name
+		public $db = 'test';				// Database name
 		
 		/*Here Constructor is use to establish the database connection, when Object of the class will create it will call automatically*/
 		function __construct(){	
